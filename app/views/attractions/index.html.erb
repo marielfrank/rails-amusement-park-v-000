@@ -1,0 +1,27 @@
+<h1>Listing attractions</h1>
+<table>
+    <tbody>
+        <tr>
+            <td><strong>Picture</strong></td>
+            <td><strong>Name</strong></td>
+            <td><strong>Tickets</strong></td>
+            <td><strong>Details</strong></td>
+        </tr>
+        <% @attractions.each do |att| %>
+        <tr>
+            <td><img src="http://www.allthingsclipart.com/05/amusement.park.05.jpg" width="100"></td>
+            <td><%= att.name %></td>
+            <td><%= att.tickets %></td>
+            <% if current_user.admin %>
+                <td><%= link_to "Show " + att.name, attraction_path(att) %></td>
+            <% else %>
+                <td><%= link_to "Go on " + att.name, attraction_path(att) %></td>
+            <% end %>
+        </tr>
+        <% end %>
+     
+    </tbody>
+</table>
+<p>
+    <%= link_to "New Attraction", new_attraction_path %>
+</p>
